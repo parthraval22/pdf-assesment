@@ -1,0 +1,257 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Set your colors
+$primary: #00afa5;
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(("white": ($white,
+                $black,
+            ),
+            "black": ($black,
+                $white,
+            ),
+            "light": ($light,
+                $light-invert,
+            ),
+            "dark": ($dark,
+                $dark-invert,
+            ),
+            "primary": ($primary,
+                $primary-invert,
+                $primary-light,
+                $primary-dark,
+            ),
+            "link": ($link,
+                $link-invert,
+                $link-light,
+                $link-dark,
+            ),
+            "info": ($info,
+                $info-invert,
+                $info-light,
+                $info-dark,
+            ),
+            "success": ($success,
+                $success-invert,
+                $success-light,
+                $success-dark,
+            ),
+            "warning": ($warning,
+                $warning-invert,
+                $warning-light,
+                $warning-dark,
+            ),
+            "danger": ($danger,
+                $danger-invert,
+                $danger-light,
+                $danger-dark,
+            ),
+        ),
+        $custom-colors);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+.menu-list a:hover {
+    background-color: $primary-light  !important;
+}
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.navbar-item img {
+    max-height: 2.75rem;
+}
+
+.main {
+    @extend .is-flex;
+    height: 100vh;
+}
+
+.content {
+    @extend .is-flex-grow-5;
+    overflow-y: scroll;
+}
+
+.form-container{
+    @include from($tablet){
+        background-color: hsl(0deg, 0%, 100%);
+        border-radius: 6px;
+        box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
+        color: hsl(0deg, 0%, 29%);
+        display: block;
+        padding: 3rem;
+    }
+    padding: 0.75rem;
+}
+
+.sidebar {
+    @extend .is-relative;
+
+    @include from($tablet) {
+        flex-shrink: 1 !important;
+        width: 480px;
+    }
+
+    transition: all 0.2s ease;
+    box-shadow: 0 0 5px -2px #888;
+}
+
+.sidebar.active {
+    @include until($tablet) {
+        flex: 0 0 100%;
+    }
+
+    transform: translateX(0);
+}
+
+.sidebar.hide {
+    @include until($tablet) {
+        width: 0px;
+        transform: translateX(-480px);
+    }
+}
+
+.content-container {
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.close-btn {
+    @include until($tablet) {
+        display: block;
+    }
+
+    display: none;
+    position: absolute;
+}
+
+.sidebar.active .close-btn {
+    right: 1px;
+    bottom: 50%;
+}
+
+.nav-right {
+    @extend .ml-auto, .is-flex;
+}
+
+.nav-btn {
+    @extend .ml-2;
+}
+
+.open-btn {
+    @extend .nav-btn, .mr-4;
+
+    @include until($tablet) {
+        display: block;
+    }
+
+    display: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.top_navbar {
+    @extend .p-4, .is-flex;
+    box-shadow: 0 0 1px 0px #888;
+    height: 4.5rem;
+}
+
+.document_navbar {
+    @extend .top_navbar, .has-background-primary, .has-text-white;
+}
+
+.upload-cta {
+    @extend .file-cta;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.file-list {
+    @extend .m-4, .p-3, .is-flex;
+    height: 6rem;
+    cursor: pointer;
+}
+
+.file-selection {
+    border-left: 5px solid $primary;
+    background-color: hsl(0deg, 0%, 100%);
+    border-radius: 2px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 5%), 0 0px 0 1px rgb(10 10 10 / 15%);
+    color: hsl(0deg, 0%, 29%);
+}
+
+.file-list:hover {
+    background-color: hsl(0deg, 0%, 100%);
+    border-radius: 2px;
+    box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 5%), 0 0px 0 1px rgb(10 10 10 / 15%);
+    color: hsl(0deg, 0%, 29%);
+}
+
+.file-title {
+    @extend .is-size-6, .has-text-weight-medium;
+}
+
+.file-tags {
+    @extend .is-size-6, .has-text-weight-light, .mt-5;
+}
+
+.file-replace {
+    @include until($tablet) {
+        padding: 1rem 1.5rem;
+    }
+
+    @include from($tablet) {
+        padding: 0.3rem 1rem;
+    }
+
+    font-size: 0.875rem;
+    width: 100%;
+    height: 100%;
+}
+
+.right-menu>.dropdown-menu {
+    top: -20%;
+    left: 120%;
+    z-index: 99999;
+}
+
+.pdf-container {
+    @extend .mx-5, .my-4;
+    height: 90.5%;
+}
+
+.model-dialog {
+    @extend .p-4;
+    max-width: 460px;
+}
+
+.pdf-app .toolbar {
+    z-index: 9 !important;
+}
